@@ -18,7 +18,7 @@ const App = () => {
   ];
 
   let explored = ["stop", "stop", 0];
-  let index = explored.length - 1;
+  let index = [explored.length - 1];
 
   return (
     <div className="App">

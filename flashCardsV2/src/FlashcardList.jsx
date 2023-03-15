@@ -10,34 +10,30 @@ function FlashcardList({ flashcards, explore, curIndex }) {
   const [result, setResult] = useState('');
 
   const handleNextCard = () => {
-    let randomIndex = currentCard;
-    while (randomIndex === currentCard) {
-      randomIndex = Math.floor(Math.random() * flashcards.length);
-    } 
-    setCurrentCard(randomIndex);
-    setIsFlipped(false);
-    setUserInput("");
-    setResult("");
-    
-    // if (curIndex == explore.length - 1) {
-    //   curIndex += 1; //not updating
-    //   let randomIndex = currentCard;
-    //   while (randomIndex === currentCard) {
-    //     randomIndex = Math.floor(Math.random() * flashcards.length);
-    //   } 
-    //   explore.push(randomIndex)
-    //   setCurrentCard(randomIndex);
-    //   setIsFlipped(false);
-    // } else {
-    //   setCurrentCard(explore[curIndex+1])
-    //   setIsFlipped(false);
-    // }
+    if (curIndex[0] == explore.length - 1) {
+      curIndex[0] += 1;
+      let randomIndex = currentCard;
+      while (randomIndex === currentCard) {
+        randomIndex = Math.floor(Math.random() * flashcards.length);
+      }
+      explore.push(randomIndex);
+      setCurrentCard(randomIndex);
+      setIsFlipped(false);
+      setUserInput("");
+      setResult("");
+    } else {
+      curIndex[0] += 1;
+      setCurrentCard(explore[curIndex[0]]);
+      setIsFlipped(false);
+      setUserInput("");
+      setResult("");
+    }
   };
 
   const handlePrevCard = () => {
-    curIndex -= 1;
+    curIndex[0] -= 1;
     if (explore[curIndex] != "stop") {
-      setCurrentCard(explore[curIndex]);
+      setCurrentCard(explore[curIndex[0]]);
       setIsFlipped(false);
       setUserInput("");
       setResult("");
